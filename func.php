@@ -56,7 +56,7 @@
                     <td>
                         <button id="openUpdate" type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#myModal" >
                             <i class="fa-solid fa-pen-to-square"></i> Update</button>
-                        <button type="button" remove_id="'.$row['id'].'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" >
+                        <button id="openDelete" type="button" remove_id="'.$row['id'].'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" >
                             <i class="fa-solid fa-trash"></i> Delete</button>
                     </td>
                 </tr>
@@ -66,7 +66,23 @@
     function delete(){
         global $connection;
         if(isset($_POST['btn_delete'])){
-
+            $id = $_POST['remove_id'];
+            $sql = "DELETE FROM employee WHERE id='$id'";
+            $rs  = $connection->query($sql);
+            if($rs){
+                    echo '
+                        <script>
+                            $(document).ready(function(){
+                                swal({
+                                title: "Good job!",
+                                text: "You clicked the button!",
+                                icon: "success",
+                                button: "Aww yiss!",
+                                });
+                            })
+                        </script>
+                    ';
+                }
         }
     }
     delete();

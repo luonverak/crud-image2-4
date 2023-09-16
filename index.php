@@ -75,7 +75,7 @@
         <!-- Modal body -->
         <div class="modal-body">
             <form action="" method="post">
-                <input type="text" value="<?php $remove_id?>" name="remove_id" id="">
+                <input type="hidden" id="remove_id" name="remove_id" id="">
                 <button name="btn_delete" type="submit" class="btn btn-primary me-3" data-bs-dismiss="modal">Yes,Delete its.</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
             </form>
@@ -105,6 +105,10 @@
             $("#position").val(position);
             $("#old_profile").val(profile);
             $("#emp_id").val(id);
+        })
+        $("body").on('click',"#openDelete",function(){
+            id = $(this).parents("tr").find("td").eq(0).text();
+            $("#remove_id").val(id)
         })
     })
 </script>
